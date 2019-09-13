@@ -1,8 +1,9 @@
 import { Router } from "express";
+import { passportConfig } from "../../config";
 
 export default () => {
   const router = new Router();
-  console.log("Inside Router");
+  const passport = passportConfig();
 
   /**
    * @api {GET} / Request Home Page
@@ -37,10 +38,17 @@ export default () => {
    * @apiSuccess {Object} { user } User Information.
    */
 
-  router.post("/login", (req, res) => {
-    console.log("Inside POST /login callback function");
-    console.log(req.body);
-    res.send(`You posted to the login page!\n`);
+  router.post("/login", (req, res, next) => {
+    console.log("body parsing", req.body);
+    passport.authenticate("local", (err, user, info) => {
+      // Here Local Strategy is triggere !!!
+      // Strategy defin if user is append to req object or not
+      req.login(user, err => {
+        return user
+          ? res.send("You were authenticated & logged in!\n")
+          : res.send("You are not authenticated in!\n");
+      });
+    })(req, res, next);
   });
 
   return router;

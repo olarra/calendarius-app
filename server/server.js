@@ -3,6 +3,9 @@ import uuid from "uuid/v4";
 import expressSession from "express-session";
 import sessionFileStore from "session-file-store";
 import mainRoutes from "./routes/root";
+import passport from "passport";
+import { serverConfig, config } from "./config";
+import bodyParser from "body-parser";
 
 const FileStore = sessionFileStore(expressSession);
 
@@ -10,7 +13,8 @@ export class CalendariusServer {
   constructor() {
     this._router = new express.Router();
     this.createApp();
-    this.config();
+    serverConfig(this._app);
+    this.loadPassportConfig();
     this.initSession();
     this.loadRoutes();
     this.listen();
@@ -37,26 +41,19 @@ export class CalendariusServer {
     );
   }
 
+  loadPassportConfig() {
+    this._app.use(passport.initialize());
+    this._app.use(passport.session());
+  }
+
   loadRoutes() {
-    // Register routes
     this._app.use("/", mainRoutes());
   }
 
-  config() {
-    this._port = process.env.PORT || 8080;
-  }
-
-  // defineRoutes() {
-  //   this._app.get("/", (req, res) => {
-  //     console.log("Inside the homepage callback function");
-  //     console.log(req.sessionID);
-  //     res.send(`you just hit the home page\n`);
-  //   });
-  // }
-
   listen() {
-    this._app.listen(this._port, () => {
-      console.log("Running server on port %s", this._port);
+    const port = process.env.PORT || config.SERVER.port;
+    this._app.listen(process.env.PORT || 8080, () => {
+      console.log("Running server on port %s", port);
     });
   }
 }
