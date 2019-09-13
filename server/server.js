@@ -5,7 +5,6 @@ import sessionFileStore from "session-file-store";
 import mainRoutes from "./routes/root";
 import passport from "passport";
 import { serverConfig, config } from "./config";
-import bodyParser from "body-parser";
 
 const FileStore = sessionFileStore(expressSession);
 
