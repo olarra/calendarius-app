@@ -43,5 +43,14 @@ export const passportConfig = () => {
     done(null, user.id);
   });
 
+  passport.deserializeUser((id, done) => {
+    console.log("Inside deserializeUser callback");
+    console.log(
+      `The user id passport saved in the session file store is: ${id}`
+    );
+    const user = users[0].id === id ? users[0] : false;
+    done(null, user);
+  });
+
   return passport;
 };

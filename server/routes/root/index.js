@@ -51,5 +51,15 @@ export default () => {
     })(req, res, next);
   });
 
+  router.get("/authenticated", (req, res) => {
+    console.log("Inside GET /authrequired callback");
+    console.log(`User authenticated? ${req.isAuthenticated()}`);
+    if (req.isAuthenticated()) {
+      res.send("you hit the authentication endpoint\n");
+    } else {
+      res.redirect("/login");
+    }
+  });
+
   return router;
 };
