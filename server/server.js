@@ -2,15 +2,17 @@ import express from "express";
 import uuid from "uuid/v4";
 import expressSession from "express-session";
 import sessionFileStore from "session-file-store";
+import mainRoutes from "./routes/root";
 
 const FileStore = sessionFileStore(expressSession);
 
 export class CalendariusServer {
   constructor() {
+    this._router = new express.Router();
     this.createApp();
     this.config();
     this.initSession();
-    this.defineRoutes();
+    this.loadRoutes();
     this.listen();
   }
 
@@ -35,17 +37,22 @@ export class CalendariusServer {
     );
   }
 
+  loadRoutes() {
+    // Register routes
+    this._app.use("/", mainRoutes());
+  }
+
   config() {
     this._port = process.env.PORT || 8080;
   }
 
-  defineRoutes() {
-    this._app.get("/", (req, res) => {
-      console.log("Inside the homepage callback function");
-      console.log(req.sessionID);
-      res.send(`you just hit the home page\n`);
-    });
-  }
+  // defineRoutes() {
+  //   this._app.get("/", (req, res) => {
+  //     console.log("Inside the homepage callback function");
+  //     console.log(req.sessionID);
+  //     res.send(`you just hit the home page\n`);
+  //   });
+  // }
 
   listen() {
     this._app.listen(this._port, () => {
