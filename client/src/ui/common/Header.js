@@ -7,7 +7,7 @@ export const Header = () => (
     <Navbar.Brand>
       <Button variant="info">
         <Link to="/home" style={{ color: "white" }}>
-          DocAvenue
+          Calendarius App
         </Link>
       </Button>
     </Navbar.Brand>

@@ -8,10 +8,9 @@ export const CalendariousRouter = () => {
   return (
     <React.Fragment>
       <Router>
-        <Header />
         <div>
           <Switch>
-            <Route exact path="/" component={Public} />
+            <Route exact path="/" component={Login} />
             <Route path="/login" component={Login} />
             <Route path="/protected" component={Protected} />
             <Route component={NoMatch} />

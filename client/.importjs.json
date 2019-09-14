@@ -1,0 +1,7 @@
+{
+  "lookupPaths": [
+    "node_modules/react-toolbox/components/**/*.js",
+    "node_modules/react-bootstrap/*.js",
+    "app/src/ui/**/*.js"
+  ]
+}
