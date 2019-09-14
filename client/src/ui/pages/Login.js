@@ -41,7 +41,7 @@ export class Login extends React.Component {
      await requestLogin(this.state);
      this.setState({ username: "", password: "" });
      this.setState({isDismissed:false});
-     (this.props.auth.user.id) && this.props.history.push("/public")
+     (this.props.auth.user.id) && this.props.history.push("/protected")
   }
 
   render() {

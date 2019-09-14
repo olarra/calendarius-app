@@ -26,7 +26,7 @@ export const passportConfig = () => {
         console.log("Local strategy returned true");
         return done(null, user);
       } else {
-        return done(undefined, false, {
+        return done(null, false, {
           message: "Invalid email or password."
         });
       }
@@ -44,7 +44,7 @@ export const passportConfig = () => {
   });
 
   passport.deserializeUser((id, done) => {
-    console.log("Inside deserializeUser callback");
+    console.log(" deserializeUser...");
     console.log(
       `The user id passport saved in the session file store is: ${id}`
     );

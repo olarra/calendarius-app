@@ -2,7 +2,7 @@ import { Redirect } from "react-router-dom";
 import React from "react";
 
 export const fakeAuth = {
-  signedIn: false
+  signedIn: true
 };
 
 export const PrivateRoute = ({ children }) => {

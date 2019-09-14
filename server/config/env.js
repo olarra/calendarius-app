@@ -1,7 +1,7 @@
 export const config = {
   USERS: [
     {
-      id: "meddyZKO",
+      id: "meddy",
       username: "meddy.menzikoff",
       password: "password"
     },

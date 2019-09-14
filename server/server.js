@@ -13,8 +13,8 @@ export class CalendariusServer {
     this._router = new express.Router();
     this.createApp();
     serverConfig(this._app);
-    this.loadPassportConfig();
     this.initSession();
+    this.loadPassportConfig();
     this.loadRoutes();
     this.listen();
   }
@@ -35,7 +35,8 @@ export class CalendariusServer {
         store: new FileStore(),
         secret: "one-click-flare", //pick a random string to make the hash that is generated secure
         resave: false,
-        saveUninitialized: true
+        saveUninitialized: true,
+        cookie: { secure: false } // Remember to set this
       })
     );
   }

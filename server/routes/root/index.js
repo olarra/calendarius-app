@@ -11,7 +11,12 @@ export default () => {
    * @apiSuccess {String} firstname Firstname of the User.
    */
 
-  router.get("/status", (req, res) => res.send(`Server OK!\n`));
+  // create the homepage route at '/'
+  router.get('/', (req, res) => {
+    console.log('Inside the homepage callback function')
+    console.log(req.sessionID)
+    res.send(`Server OK!\n ${req.sessionID}`)
+  })
 
   /**
    * @api {GET} / Request Home Page
@@ -55,10 +60,11 @@ export default () => {
   });
 
   router.get("/authenticated", (req, res) => {
-    console.log("Inside GET /authrequired callback");
-    console.log(`User authenticated? ${req.isAuthenticated()}`);
+    console.log("GET /authenticated",JSON.stringify(req.headers,null,2));
+    console.log(`req.session? ${JSON.stringify(req.session)}`);
+    console.log('REQ.ISAUTHENTICATED()', req.isAuthenticated())
     if (req.isAuthenticated()) {
-      res.send("you hit the authentication endpoint\n");
+      res.status(200).json({message :"you hit the authentication endpoint\n"});
     } else {
       res.redirect("/login");
     }
