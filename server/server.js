@@ -33,7 +33,7 @@ export class CalendariusServer {
           return uuid(); // use UUIDs for session IDs
         },
         store: new FileStore(),
-        secret: "keyboard cat",
+        secret: "one-click-flare", //pick a random string to make the hash that is generated secure
         resave: false,
         saveUninitialized: true
       })
