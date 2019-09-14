@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Public, Protected, Login, NoMatch } from "../ui/pages";
 import { Header } from "../ui/common";
-
+import { PrivateRoute } from "./PrivateRoute";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 export const CalendariousRouter = () => {
@@ -12,7 +12,11 @@ export const CalendariousRouter = () => {
           <Switch>
             <Route exact path="/" component={Login} />
             <Route path="/login" component={Login} />
-            <Route path="/protected" component={Protected} />
+
+            <PrivateRoute>
+              <Route path="/protected" component={Protected} />
+            </PrivateRoute>
+
             <Route component={NoMatch} />
           </Switch>
         </div>

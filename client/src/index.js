@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { CalendariousRouter } from "./config/Router";
+import { CalendariousRouter } from "./navigation";
 ReactDOM.render(<CalendariousRouter />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
