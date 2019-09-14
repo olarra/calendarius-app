@@ -3,14 +3,14 @@ import { Public, Protected, Login, NoMatch } from "../ui/pages";
 import { Header } from "../ui/common";
 import { PrivateRoute } from "./PrivateRoute";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
+import { AuthContainer } from "../containers";
 export const CalendariousRouter = () => {
   return (
     <React.Fragment>
       <Router>
         <div>
           <Switch>
-            <Route exact path="/" component={Login} />
+            <Route exact path="/" component={AuthContainer} />
             <Route path="/login" component={Login} />
 
             <PrivateRoute>
