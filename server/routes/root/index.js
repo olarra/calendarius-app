@@ -49,7 +49,7 @@ export default () => {
       req.login(user, err => {
         return user
           ? res.status(200).json({ message: "success", user: user })
-          : res.status(404).json({ message: "Invalid username or password" });
+          : res.status(401).json({ message: "Invalid username or password" });
       });
     })(req, res, next);
   });

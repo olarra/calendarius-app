@@ -16,25 +16,25 @@ export default (state = initialState, action) => {
     case authTypes.LOGIN_REQUEST:
       // Mark the state as "isFetching" so we can show a spinner or something else.
       return {
+        ...state,
         isFetching: true,
         isAuthenticated: false,
-        ...state
       };
     case authTypes.LOGIN_SUCCESS:
       // Set loading to "false" when fetching has finished.
       // Set the data with the reponse from the (EXTERNAL API)
       return {
+        ...state,
         isFetching: false,
         isAuthenticated: true,
-        user: action.payload,
-        ...state
+        user:action.payload.user,
       };
     case authTypes.LOGIN_FAILURE:
       // If code request has failed we set an empty array to the task state.
       return {
+        ...state,
         isFetching: false,
         error: action.payload,
-        ...state
       };
     case authTypes.LOGOUT:
       return {

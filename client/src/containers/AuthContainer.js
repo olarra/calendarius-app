@@ -13,6 +13,7 @@ import { Login } from "../ui/pages";
  */
 class AuthContainer extends React.Component {
   render() {
+    console.log("PROPS", this.props)
     return <Login {...this.props} />;
   }
 }
