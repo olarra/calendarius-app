@@ -157,7 +157,7 @@ export class Agenda extends React.Component {
       thursdays: {
         daysOfWeek: [5]
       },
-      meeting: new Date("2019-9-16")
+      meeting: new Date(Date.now())
     };
 
     const modifiersStyles = {
@@ -190,13 +190,11 @@ export class Agenda extends React.Component {
                 onDayClick={this.handleDayClick}
               />
             </Col>
-            <Col>
-
-
+            <Col className="c-agenda-col-right">
               <Form
                 style={{
-                  width: "50%",
-                  marginTop: 20
+                  width: "60%",
+                  marginTop: 100
                 }}
               >
                 <Form.Label className="purpleText">Date Choisie <span className="required">(*)</span></Form.Label>
@@ -211,12 +209,13 @@ export class Agenda extends React.Component {
                     value={this.state.labelMeeting}
                     onChange={e => this.handleChange(e)}
                     type="text"
-                    placeholder="Username"
+                    placeholder="Quel est le but de la réunion"
                   />
                 </Form.Group>
                 <Form.Group controlId="formGroupStartHour">
                   <Form.Label className="purpleText">Heure de début <span className="required">(*)</span></Form.Label>
                   <TimePicker
+                    style={{display: "block"}}
                     className="timePicker"
                     defaultValue={now}
                     showSecond={false}
@@ -229,6 +228,7 @@ export class Agenda extends React.Component {
                 <Form.Group controlId="formGroupEndHour">
                   <Form.Label className="purpleText">Heure de fin <span className="required">(*)</span></Form.Label>
                   <TimePicker
+                    style={{display: "block"}}
                     className="timePicker"
                     defaultValue={future}
                     showSecond={false}
@@ -239,17 +239,23 @@ export class Agenda extends React.Component {
                   />
                 </Form.Group>
               </Form>
-              <Button variant="success" onClick={() => this.addMeeting()} disabled={!this.isMeetingValid()}>
+              <div style={{
+                width: "60%",
+                marginTop: 20
+              }}>
+              <Button style={{alginSelf:"flex-start"}} variant="success" onClick={() => this.addMeeting()} disabled={!this.isMeetingValid()}>
                 Submit
               </Button>
-              <p>labelMeeting :{this.state.labelMeeting}</p>
-              <p>startHourMeeting :{this.state.startHourMeeting}</p>
-              <p>endHourMeeting :{this.state.endHourMeeting}</p>
-              <pre>
-                {" "}
-                agenda:
-                {JSON.stringify(this.props.agenda, null, 2)}
-              </pre>
+            </div>
+            {
+              // <pre>
+              //   {" "}
+              //   agenda:
+              //   {JSON.stringify(this.props.agenda, null, 2)}
+              // </pre>
+
+            }
+
             </Col>
           </Row>
         </Container>
