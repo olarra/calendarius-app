@@ -25,3 +25,14 @@ When you’re ready to deploy to production, create a minified bundle with `npm 
 <p align='center'>
 <img src='https://cdn.rawgit.com/facebook/create-react-app/27b42ac/screencast.svg' width='600' alt='npm start'>
 </p>
+
+Test Case
+
+<pre><code language="undefined">npm test
+npm run chrome-test</code></pre>
+
+Coverage
+
+npm run coverage
+
+open coverage/ dir
