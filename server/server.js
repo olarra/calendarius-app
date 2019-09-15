@@ -36,7 +36,7 @@ export class CalendariusServer {
         secret: "one-click-flare", //pick a random string to make the hash that is generated secure
         resave: false,
         saveUninitialized: true,
-        cookie: { secure: false } // Remember to set this
+        cookie: { secure: false }
       })
     );
   }

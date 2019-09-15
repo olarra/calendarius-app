@@ -27,6 +27,7 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: false,
         isAuthenticated: true,
+        error: null,
         user:action.payload.user,
       };
     case authTypes.LOGIN_FAILURE:

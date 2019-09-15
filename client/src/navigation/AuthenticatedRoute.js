@@ -1,8 +1,8 @@
-import {Redirect} from "react-router-dom";
+import {Redirect, withRouter} from "react-router-dom";
 import React from "react";
 import AuthService from "../redux/auth/service";
 
-export class PrivateRoute extends React.Component {
+class AuthenticatedRoute extends React.Component {
   state = {
     resolveAuth: "start",
     authenticated: false
@@ -17,13 +17,16 @@ export class PrivateRoute extends React.Component {
   }
 
   render() {
-    const {showIfNotLogged, children } = this.props;
+    const {showIfNotLogged, children, history } = this.props;
+    console.log("PROPS...",this.props)
     if (this.state.resolveAuth !== "end") {
-      return <div></div>;
+      return <h3>Resolving</h3>;
     } else {
       return this.state.authenticated
-        ? (children)
-        : (<Redirect to="/"/>);
+        ? (<Redirect to="/home"/>)
+        : children;
     }
   }
 }
+
+export default withRouter(AuthenticatedRoute)

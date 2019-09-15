@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { passportConfig } from "../../config";
+import authMiddelwares from "../../middelwares/auth";
 
 export default () => {
   const router = new Router();
@@ -12,29 +13,8 @@ export default () => {
    */
 
   // create the homepage route at '/'
-  router.get('/', (req, res) => {
-    console.log('Inside the homepage callback function')
-    console.log(req.sessionID)
-    res.send(`Server OK!\n ${req.sessionID}`)
-  })
-
-  /**
-   * @api {GET} / Request Home Page
-   * @apiGroup Main
-   * @apiSuccess {String} You got home page!
-   */
-
-  router.get("/user", (req, res) => {
-    req.isAuthenticated()
-      ? res.status(200).json({ message: "success", user: user })
-      : res.status(404).json({ message: "user not authenticated" });
-  });
-
-  // GET /logout
-  router.get("/logout", (req, res, next) => {
-    if (req.session) {
-      req.session.destroy(err => (err ? next(err) : res.redirect("/")));
-    }
+  router.get("/", (req, res) => {
+    res.send(`Server OK!\n ${req.sessionID}`);
   });
 
   /**
@@ -59,15 +39,23 @@ export default () => {
     })(req, res, next);
   });
 
-  router.get("/authenticated", (req, res) => {
-    console.log("GET /authenticated",JSON.stringify(req.headers,null,2));
-    console.log(`req.session? ${JSON.stringify(req.session)}`);
-    console.log('REQ.ISAUTHENTICATED()', req.isAuthenticated())
-    if (req.isAuthenticated()) {
-      res.status(200).json({message :"you hit the authentication endpoint\n"});
-    } else {
-      res.redirect("/login");
-    }
+  router.get("/protected", authMiddelwares.isLoggedIn, (req, res) => {
+    res.status(200).json({ message: "you hit the authentication endpoint\n" });
+  });
+
+  router.get("/profile", authMiddelwares.isLoggedIn, function(req, res) {
+    res.status(200).json({ user: req.user });
+  });
+
+  router.get("/logout", (req, res) => {
+    req.logout(); // passport documentation : http://www.passportjs.org/docs/logout/
+    req.session.destroy(err => {
+      res
+        .status(200)
+        .clearCookie("connect.sid", { path: "/" })
+        .json({ status: 200, message: "logout success" });
+      ("/");
+    });
   });
 
   return router;
