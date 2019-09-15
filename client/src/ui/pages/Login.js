@@ -24,7 +24,7 @@ export class Login extends React.Component {
     AuthService.isAuthenticated().then(res => {
       if (res.status === 200) {
         this.setState({authenticated: true, fetching: false});
-        this.props.history.push('/protected');
+        this.props.history.push('/agenda');
       } else {
         this.setState({authenticated: false, fetching: false});
       }
@@ -54,7 +54,7 @@ export class Login extends React.Component {
     await requestLogin(this.state);
     this.setState({username: "", password: ""});
     this.setState({isDismissed: false});
-    (this.props.auth.user.id) && this.props.history.push("/protected")
+    (this.props.auth.user.id) && this.props.history.push("/agenda")
   }
 
   render() {
@@ -107,10 +107,10 @@ export class Login extends React.Component {
                 <Emoji symbol="🤩"/>
               </Alert.Heading>
               <p>
-                username:
+                username : {" "}
                 <span className="alert-link">meddy.menzikoff</span>
                 <br/>
-                password:
+                password : {" "}
                 <span className="alert-link">password</span>
               </p>
             </Alert>

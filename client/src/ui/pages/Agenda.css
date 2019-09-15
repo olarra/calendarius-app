@@ -1,0 +1,29 @@
+.DayPicker {
+  font-size: 1.5rem;
+}
+
+.c-agenda-col-left{
+  height: 100vh;
+  background: linear-gradient(to bottom, #ffffff, #f1f2f6);
+}
+
+.DayPicker-Day {
+  padding: 0.5em 16px;
+}
+
+.rc-time-picker-input {
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.rc-time-picker-clear {
+    top: 6px;
+    font-weight: 700;
+}
+
+.purpleText {
+  color: #786fa6;
+}

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { Public, Protected, Login, NoMatch } from "../ui/pages";
-import { Header } from "../ui/common";
+import { Public, Agenda } from "../ui/pages";
 import { PrivateRoute } from "./PrivateRoute";
-import { AuthenticatedRoute } from "./AuthenticatedRoute";
 
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -21,7 +19,7 @@ export const CalendariousRouter = () => {
             <Route path="/home" component={Public} />
 
             <PrivateRoute >
-              <Route path="/protected" component={Protected} />
+              <Route path="/agenda" component={Agenda} />
             </PrivateRoute>
 
           </Switch>
