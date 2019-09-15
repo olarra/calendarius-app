@@ -5,6 +5,10 @@ import { connect } from "react-redux";
 /* Local Dependencies */
 import { addMeeting } from "../redux/agenda/actions";
 import selectAgenda from "../redux/agenda/selector";
+import selectAuth from "../redux/auth/selector";
+import { setUser } from "../redux/auth/actions";
+
+
 import { Agenda } from "../ui/pages";
 
 /**
@@ -20,12 +24,14 @@ class AgendaContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    agenda: selectAgenda(state)
+    agenda: selectAgenda(state),
+    auth: selectAuth(state)
   };
 };
 
 const mapActionsToDispatch = dispatch => ({
   addMeeting : (meeting) => dispatch(addMeeting(meeting)),
+  setUser: user => dispatch(setUser(user))
 });
 
 const mergeProps = (state, actions, ownProps) => ({

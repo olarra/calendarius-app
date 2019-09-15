@@ -13,6 +13,9 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case authTypes.SET_USER:
+      return { ...state, user: {...action.payload} };
+
     case authTypes.LOGIN_REQUEST:
       // Mark the state as "isFetching" so we can show a spinner or something else.
       return {

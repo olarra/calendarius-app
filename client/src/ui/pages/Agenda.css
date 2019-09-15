@@ -5,6 +5,10 @@
 .c-agenda-col-left{
   height: 100vh;
   background: linear-gradient(to bottom, #ffffff, #f1f2f6);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-top: 53px;
 }
 
 .DayPicker-Day {
@@ -26,4 +30,8 @@
 
 .purpleText {
   color: #786fa6;
+}
+
+.required {
+  color: #ff6b81
 }

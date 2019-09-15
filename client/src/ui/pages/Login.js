@@ -34,7 +34,7 @@ export class Login extends React.Component {
   showErrorAuth() {
     const {auth} = this.props;
     return (<Alert variant="danger" onClose={() => this.setState({isDismissed: true})} dismissible="dismissible">
-      <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+      <Alert.Heading>Oh snap! Vous avez une erreur!!</Alert.Heading>
       <p>{auth.error.message}</p>
     </Alert>)
   }
@@ -97,13 +97,13 @@ export class Login extends React.Component {
             </Row>
           </Col>
           <Col style={styles.formContainer}>
-            <h2 style={styles.loginTitle}>Login</h2>
+            <h2 style={styles.loginTitle}>Page de connexion</h2>
             <Alert variant="primary" style={{
                 width: "75%",
                 marginTop: 20
               }}>
               <Alert.Heading>
-                Hey, nice to see you, please find here below your identifiers.
+                Hé, ravi de vous voir, veuillez trouver ci-dessous vos identifiants.
                 <Emoji symbol="🤩"/>
               </Alert.Heading>
               <p>
