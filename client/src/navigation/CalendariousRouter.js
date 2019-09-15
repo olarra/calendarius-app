@@ -4,7 +4,7 @@ import { PrivateRoute } from "./PrivateRoute";
 
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { AuthContainer } from "../containers";
+import { AuthContainer, AgendaContainer } from "../containers";
 export const CalendariousRouter = () => {
   return (
     <React.Fragment>
@@ -19,7 +19,7 @@ export const CalendariousRouter = () => {
             <Route path="/home" component={Public} />
 
             <PrivateRoute >
-              <Route path="/agenda" component={Agenda} />
+              <Route path="/agenda" component={AgendaContainer} />
             </PrivateRoute>
 
           </Switch>

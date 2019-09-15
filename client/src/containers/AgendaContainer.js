@@ -3,7 +3,8 @@ import React from "react";
 /* React Redux */
 import { connect } from "react-redux";
 /* Local Dependencies */
-import selectAuth from "../redux/auth/selector";
+import { addMeeting } from "../redux/agenda/actions";
+import selectAgenda from "../redux/agenda/selector";
 import { Agenda } from "../ui/pages";
 
 /**
@@ -12,18 +13,20 @@ import { Agenda } from "../ui/pages";
  */
 class AgendaContainer extends React.Component {
   render() {
-    console.log("PROPS", this.props)
+    console.log("AGENDA PROPS", this.props)
     return <Agenda {...this.props} />;
   }
 }
 
 const mapStateToProps = state => {
   return {
-    auth: selectAuth(state)
+    agenda: selectAgenda(state)
   };
 };
 
-const mapActionsToDispatch = dispatch => ({});
+const mapActionsToDispatch = dispatch => ({
+  addMeeting : (meeting) => dispatch(addMeeting(meeting)),
+});
 
 const mergeProps = (state, actions, ownProps) => ({
   ...state,

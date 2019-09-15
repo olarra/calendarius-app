@@ -56,6 +56,22 @@ export class Agenda extends React.Component {
     AuthService.profile();
   }
 
+  addMeeting(){
+    const { addMeeting } = this.props;
+    const { selectedDay, labelMeeting, startHourMeeting, endHourMeeting} = this.state;
+    let meeting = {
+      selectedDay : selectedDay.toLocaleDateString(),
+      labelMeeting,
+      startHourMeeting,
+      endHourMeeting,
+    }
+    console.log("addMeeting", this.props)
+
+    console.log("i will add a metting to your Agenda", meeting)
+    addMeeting(meeting);
+
+  }
+
   handleDayClick(day) {
     this.setState({selectedDay: day});
   }
@@ -154,13 +170,15 @@ export class Agenda extends React.Component {
               </Form.Group>
 
             </Form>
-            <Button variant="success" onClick={()=>console.log("state", this.state)}>
+            <Button variant="success" onClick={()=>this.addMeeting()}>
               Submit
             </Button>
             <p>labelMeeting :{this.state.labelMeeting}</p>
             <p>startHourMeeting :{this.state.startHourMeeting}</p>
             <p>endHourMeeting :{this.state.endHourMeeting}</p>
-
+            <pre> agenda:
+              {JSON.stringify(this.props.agenda, null,2)}
+            </pre>
           </Col>
         </Row>
       </Container>
