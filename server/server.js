@@ -52,7 +52,7 @@ export class CalendariusServer {
 
   listen() {
     const port = process.env.PORT || config.SERVER.port;
-    this._app.listen(process.env.PORT || 8080, () => {
+    this._app.listen(process.env.PORT || port, () => {
       console.log("Running server on port %s", port);
     });
   }

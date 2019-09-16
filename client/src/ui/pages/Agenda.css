@@ -42,3 +42,41 @@
 .required {
   color: #ff6b81
 }
+
+.c-date-picker {
+
+}
+
+.cursor {
+  width: 13px;
+  height: 13px;
+  background-color: blueviolet;
+  margin: auto;
+  position: absolute;
+  /* animation: pulse 0.5s infinite ease-in-out; */
+}
+
+.c-date-type {
+  display: flex;
+  width: 36%;
+  justify-content: space-between;
+}
+
+.addButton {
+  background: #4340ae;
+  margin-top: 15px;
+  border: none;
+  color: white;
+  padding: 7px 14px;
+  border-radius: 50%;
+}
+
+.addButton-disabled {
+  opacity: 0.65;
+  background: #4340ae;
+  margin-top: 15px;
+  border: none;
+  color: white;
+  padding: 7px 14px;
+  border-radius: 50%;
+}

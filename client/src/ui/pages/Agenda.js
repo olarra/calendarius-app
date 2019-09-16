@@ -20,25 +20,24 @@ import {
   Button
 } from "react-bootstrap";
 import DayPicker from "react-day-picker";
-import { Header } from "../common";
-
+import { Header, OCFTypeDateIndicator, OCFButton } from "../common";
 export class Agenda extends React.Component {
 
   constructor(props) {
-  super(props);
-  this.handleDayClick = this.handleDayClick.bind(this);
-  this.state = {
-    selectedDay: undefined,
-    locale: "fr",
-    labelMeeting: "",
-    startHourMeeting: null,
-    endHourMeeting: null
-  };
-}
+    super(props);
+    this.handleDayClick = this.handleDayClick.bind(this);
+    this.state = {
+      selectedDay: undefined,
+      locale: "fr",
+      labelMeeting: "",
+      startHourMeeting: null,
+      endHourMeeting: null
+    };
+  }
 
 
   componentDidMount() {
-    AuthService.isAuthenticated().then(res=>{
+    AuthService.isAuthenticated().then(res => {
       this.props.setUser(res.data.user)
     })
     this.setState({
@@ -110,7 +109,16 @@ export class Agenda extends React.Component {
     this.setState({ selectedDay: day });
   }
 
-  isMeetingValid(){
+  renderAddButton() {
+    return (
+    <OCFButton className="addButton" className={this.state.selectedDay ? "addButton" : 'addButton-disabled'} 
+
+    disabled={!this.state.selectedDay} onClick={() => console.log("add")}>
+      +
+    </OCFButton>);
+  }
+
+  isMeetingValid() {
     const {
       selectedDay,
       labelMeeting,
@@ -157,11 +165,11 @@ export class Agenda extends React.Component {
       thursdays: {
         daysOfWeek: [5]
       },
-      meeting: new Date(Date.now())
+      today: new Date(Date.now())
     };
 
     const modifiersStyles = {
-      meeting: {
+      today: {
         color: "white",
         backgroundColor: "#ffc107"
       },
@@ -171,6 +179,7 @@ export class Agenda extends React.Component {
       }
     };
 
+
     return (
       <div>
         <Header logout={() => this.logout()} user={this.props.auth.user} />
@@ -178,6 +187,7 @@ export class Agenda extends React.Component {
         <Container fluid={true}>
           <Row>
             <Col xs={6} className="c-agenda-col-left">
+              <div className="c-date-picker">{this.renderAddButton()}</div>
               <DayPicker
                 localeUtils={MomentLocaleUtils}
                 locale={this.state.locale}
@@ -189,6 +199,14 @@ export class Agenda extends React.Component {
                 selectedDays={this.state.selectedDay}
                 onDayClick={this.handleDayClick}
               />
+              <div className="c-date-type">
+                <OCFTypeDateIndicator label="Aaujourd'hui" color="#ffc107"></OCFTypeDateIndicator>
+                <OCFTypeDateIndicator label="Meeting" color="#9980FA"></OCFTypeDateIndicator>
+              </div>
+
+
+
+
             </Col>
             <Col className="c-agenda-col-right">
               <Form
@@ -215,7 +233,7 @@ export class Agenda extends React.Component {
                 <Form.Group controlId="formGroupStartHour">
                   <Form.Label className="purpleText">Heure de début <span className="required">(*)</span></Form.Label>
                   <TimePicker
-                    style={{display: "block"}}
+                    style={{ display: "block" }}
                     className="timePicker"
                     defaultValue={now}
                     showSecond={false}
@@ -228,7 +246,7 @@ export class Agenda extends React.Component {
                 <Form.Group controlId="formGroupEndHour">
                   <Form.Label className="purpleText">Heure de fin <span className="required">(*)</span></Form.Label>
                   <TimePicker
-                    style={{display: "block"}}
+                    style={{ display: "block" }}
                     className="timePicker"
                     defaultValue={future}
                     showSecond={false}
@@ -243,18 +261,18 @@ export class Agenda extends React.Component {
                 width: "60%",
                 marginTop: 20
               }}>
-              <Button style={{alginSelf:"flex-start"}} variant="success" onClick={() => this.addMeeting()} disabled={!this.isMeetingValid()}>
-                Submit
+                <Button style={{ alginSelf: "flex-start" }} variant="success" onClick={() => this.addMeeting()} disabled={!this.isMeetingValid()}>
+                  Submit
               </Button>
-            </div>
-            {
-              // <pre>
-              //   {" "}
-              //   agenda:
-              //   {JSON.stringify(this.props.agenda, null, 2)}
-              // </pre>
+              </div>
+              {
+                // <pre>
+                //   {" "}
+                //   agenda:
+                //   {JSON.stringify(this.props.agenda, null, 2)}
+                // </pre>
 
-            }
+              }
 
             </Col>
           </Row>
