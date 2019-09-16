@@ -27,11 +27,11 @@ export class Agenda extends React.Component {
     super(props);
     this.handleDayClick = this.handleDayClick.bind(this);
     this.state = {
-      selectedDay: undefined,
+      date: undefined,
       locale: "fr",
-      labelMeeting: "",
-      startHourMeeting: null,
-      endHourMeeting: null
+      label: "",
+      startHour: null,
+      endHour: null
     };
   }
 
@@ -41,13 +41,13 @@ export class Agenda extends React.Component {
       this.props.setUser(res.data.user)
     })
     this.setState({
-      startHourMeeting: moment()
+      startHour: moment()
         .hour(0)
         .minute(0)
         .format("h:mm a")
     });
     this.setState({
-      endHourMeeting: moment()
+      endHour: moment()
         .hour(1)
         .minute(30)
         .format("h:mm a")
@@ -65,9 +65,9 @@ export class Agenda extends React.Component {
   }
 
   getSelectedDate() {
-    return this.state.selectedDay ? (
+    return this.state.date ? (
       <p>
-        <strong>{this.state.selectedDay.toLocaleDateString()}</strong>
+        <strong>{this.state.date.toLocaleDateString()}</strong>
       </p>
     ) : (
         <p>Choisissez un jour s'il vous plaît</p>
@@ -75,19 +75,35 @@ export class Agenda extends React.Component {
   }
 
 
+    renderMyMeetings() {
+      console.log("my meets")
+
+      return this.props.agenda.map(function(item, i){
+        console.log('test',item);
+        return <div key={i}>
+          <p >{item.date}</p>
+          <p >{JSON.stringify(item.meetings)}</p>
+          </div>
+      })
+
+
+    }
+
+
+
   addMeeting() {
     const { addMeeting } = this.props;
     const {
-      selectedDay,
-      labelMeeting,
-      startHourMeeting,
-      endHourMeeting
+      date,
+      label,
+      startHour,
+      endHour
     } = this.state;
     let meeting = {
-      selectedDay: selectedDay.toLocaleDateString(),
-      labelMeeting,
-      startHourMeeting,
-      endHourMeeting
+      date: date.toLocaleDateString(),
+      label,
+      startHour,
+      endHour
     };
     console.log("addMeeting", this.props);
 
@@ -103,33 +119,33 @@ export class Agenda extends React.Component {
     }
     if (selected) {
       // Unselect the day if already selected
-      this.setState({ selectedDay: undefined });
+      this.setState({ date: undefined });
       return;
     }
-    this.setState({ selectedDay: day });
+    this.setState({ date: day });
   }
 
   renderAddButton() {
     return (
-    <OCFButton className="addButton" className={this.state.selectedDay ? "addButton" : 'addButton-disabled'} 
+    <OCFButton  className={this.state.date ? "addButton" : 'addButton-disabled'}
 
-    disabled={!this.state.selectedDay} onClick={() => console.log("add")}>
+    disabled={!this.state.date} onClick={() => console.log("add")}>
       +
     </OCFButton>);
   }
 
   isMeetingValid() {
     const {
-      selectedDay,
-      labelMeeting,
-      startHourMeeting,
-      endHourMeeting
+      date,
+      label,
+      startHour,
+      endHour
     } = this.state;
 
-    const startTime = moment(startHourMeeting, "HH:mm a");
-    const endTime = moment(endHourMeeting, "HH:mm a");
+    const startTime = moment(startHour, "HH:mm a");
+    const endTime = moment(endHour, "HH:mm a");
 
-    return (selectedDay != null && labelMeeting !== "" && moment(startTime).isBefore(endTime))
+    return (date != null && label !== "" && moment(startTime).isBefore(endTime))
   }
 
   handleChange(e) {
@@ -143,12 +159,12 @@ export class Agenda extends React.Component {
 
   onChangeStartTime(value) {
     console.log(value && value.format("h:mm a"));
-    this.setState({ startHourMeeting: value.format("h:mm a") });
+    this.setState({ startHour: value.format("h:mm a") });
   }
 
   onChangeEndTime(value) {
     console.log(value && value.format("h:mm a"));
-    this.setState({ endHourMeeting: value.format("h:mm a") });
+    this.setState({ endHour: value.format("h:mm a") });
   }
 
   render() {
@@ -196,7 +212,7 @@ export class Agenda extends React.Component {
                 disabledDays={{
                   daysOfWeek: [0, 6]
                 }}
-                selectedDays={this.state.selectedDay}
+                selectedDays={this.state.date}
                 onDayClick={this.handleDayClick}
               />
               <div className="c-date-type">
@@ -223,8 +239,8 @@ export class Agenda extends React.Component {
                     Intitulé de la réunion <span className="required">(*)</span>
                   </Form.Label>
                   <Form.Control
-                    name="labelMeeting"
-                    value={this.state.labelMeeting}
+                    name="label"
+                    value={this.state.label}
                     onChange={e => this.handleChange(e)}
                     type="text"
                     placeholder="Quel est le but de la réunion"
@@ -265,12 +281,16 @@ export class Agenda extends React.Component {
                   Submit
               </Button>
               </div>
+              <p>My meetings</p>
+
+              {this.renderMyMeetings()}
+
               {
-                // <pre>
-                //   {" "}
-                //   agenda:
-                //   {JSON.stringify(this.props.agenda, null, 2)}
-                // </pre>
+                <pre>
+                  {" "}
+                  agenda:
+                  {JSON.stringify(this.props.agenda, null, 2)}
+                </pre>
 
               }
 

@@ -5,18 +5,55 @@ import agendaTypes from "./types";
 // we would also want a util to check if the token is expired.
 // Auth Reducer
 const initialState = {
-  meetings: [],
+  agenda: [],
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case agendaTypes.SET_AGENDA:
-      return { meetings: [...payload] };
+      return { agenda: [...payload] };
     case agendaTypes.ADD_MEETING:
+    console.log("ADD_MEETING")
       return {
-        meetings: [...state.meetings, payload]
+        agenda: addMeeting(state,payload)
       };
     default:
       return state;
   }
 };
+
+const addMeeting = (state, payload) => {
+  console.log("state",state)
+  const {date,label,startHour, endHour} = payload;
+  let copyagenda = [...state.agenda]
+  if(!copyagenda.length) {
+    return [...state.agenda,{
+      date : payload.date,
+      meetings : [{label,startHour,endHour}]
+    }]
+  }
+  else {
+    const checkDate= obj => obj.date === date;
+    const dateAlreadyExists = copyagenda.some(checkDate);
+    if(dateAlreadyExists){
+      // if the date exist we must append a meeting to the object
+       return copyagenda.map(day => {
+        if(day.date === payload.date ) {
+          return {
+            date : day.date,
+            meetings : [...day.meetings, ({label,startHour,endHour}) ]
+          }
+        }
+        else {
+          return day;
+        }
+      })
+    }
+    else {
+      return [...state.agenda,{
+        date : payload.date,
+        meetings : [{label,startHour,endHour}]
+      }]
+    }
+  }
+}

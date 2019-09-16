@@ -1,1 +1,1 @@
-export default state => state.agenda;
+export default state => state.agenda.agenda;
