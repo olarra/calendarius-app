@@ -24,7 +24,7 @@ import {
   Button
 } from "react-bootstrap";
 import DayPicker from "react-day-picker";
-import { Header, OCFTypeDateIndicator, OCFButton } from "../common";
+import { Header, OCFTypeDateIndicator, OCFButton, OCFListGroup } from "../common";
 export class Agenda extends React.Component {
 
   constructor(props) {
@@ -292,14 +292,7 @@ export class Agenda extends React.Component {
 
               {this.renderMyMeetings()}
 
-              {
-                <pre>
-                  {" "}
-                  agenda:
-                  {JSON.stringify(this.props.agenda, null, 2)}
-                </pre>
-
-              }
+              <OCFListGroup agenda={this.props.agenda}></OCFListGroup>
 
             </Col>
           </Row>
