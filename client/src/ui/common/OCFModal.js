@@ -1,23 +1,22 @@
 import React, {Component} from "react";
 import {Modal, Button} from "react-bootstrap";
+import { OCFForm } from "./OCFForm";
 
 export class OCFModal extends Component {
 
   render() {
-    return <Modal {...this.props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered="centered" backdrop="static">
+    const {date, resetFormData, addMeeting, show, selectedMeetingOnList, onHide, updateMeeting} = this.props;
+    return <Modal show={show} onHide={onHide} size="lg" aria-labelledby="contained-modal-title-vcenter" centered="centered" backdrop="static">
       <Modal.Header closeButton={false}>
         <Modal.Title id="contained-modal-title-vcenter">
           Modal heading
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Centered Modal {this.props.meeting.label}</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-        </p>
+        <OCFForm date={date} addMeeting={(meeting)=>addMeeting(meeting)} updateMeeting={(meeting)=>updateMeeting(meeting)}selectedMeetingOnList={selectedMeetingOnList}></OCFForm>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={()=>this.props.setSelectedMeeting()}>Close</Button>
+        <Button onClick={()=>resetFormData()}>Close</Button>
       </Modal.Footer>
     </Modal>
   }
