@@ -6,13 +6,29 @@ import axios from "axios";
 export default class AgendaService {
   static updateAgenda = agenda =>
     axios
-      .post(`/agenda`, agenda)
-      .then(res => {
-        console.log("res", res);
-        return res
-      })
-      .catch(error => {
-        console.log("error", error.response.statusText);
-        return { message: error.response.statusText };
-      });
+    .post(`/agenda`, agenda)
+    .then(res => {
+      console.log("res", res);
+      return res
+    })
+    .catch(error => {
+      console.log("error", error.response.statusText);
+      return {
+        message: error.response.statusText
+      };
+    });
+
+  static fetchAgenda = () =>
+    axios
+    .get(`/agenda`)
+    .then(res => {
+      console.log("res", res);
+      return res.data
+    })
+    .catch(error => {
+      console.log("error", error.response.statusText);
+      return {
+        message: error.response.statusText
+      };
+    });
 }

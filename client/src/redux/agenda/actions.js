@@ -23,8 +23,9 @@ export const setAgenda = agenda => {
 
 /* Async Action Creators */
 
-export const getAgenda = () => dispatch => {
-  agendaService.fetchAgenda().then(agenda => {
-    dispatch(setAgenda(agenda));
+export const fetchAgenda = () => dispatch => {
+  agendaService.fetchAgenda().then(data => {
+    console.log("AGENDA =>", data.state.agenda)
+    dispatch(setAgenda(data.state.agenda));
   });
 };

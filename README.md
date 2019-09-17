@@ -36,3 +36,6 @@ Coverage
 npm run coverage
 
 open coverage/ dir
+
+
+A session cookie is just a normal cookie without an expiration date. Those are handled by the browser to be valid until the window is closed or program is quit.

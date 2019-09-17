@@ -3,7 +3,7 @@ import React from "react";
 /* React Redux */
 import { connect } from "react-redux";
 /* Local Dependencies */
-import { addMeeting } from "../redux/agenda/actions";
+import { addMeeting, fetchAgenda } from "../redux/agenda/actions";
 import selectAgenda from "../redux/agenda/selector";
 import selectAuth from "../redux/auth/selector";
 import { setUser } from "../redux/auth/actions";
@@ -31,6 +31,7 @@ const mapStateToProps = state => {
 
 const mapActionsToDispatch = dispatch => ({
   addMeeting : (meeting) => dispatch(addMeeting(meeting)),
+  fetchAgenda : () => dispatch(fetchAgenda()),
   setUser: user => dispatch(setUser(user))
 });
 

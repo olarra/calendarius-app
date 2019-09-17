@@ -1,5 +1,9 @@
 import React from "react";
 import AuthService from "../../redux/auth/service";
+import AgendaService from "../../redux/agenda/service";
+
+
+
 import { Redirect } from "react-router-dom";
 import moment from "moment";
 import TimePicker from "rc-time-picker";
@@ -37,9 +41,12 @@ export class Agenda extends React.Component {
 
 
   componentDidMount() {
+
     AuthService.isAuthenticated().then(res => {
       this.props.setUser(res.data.user)
-    })
+    });
+
+    this.props.fetchAgenda();
     this.setState({
       startHour: moment()
         .hour(0)
