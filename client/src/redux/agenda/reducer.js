@@ -62,13 +62,19 @@ const addMeeting = (state, payload) => {
   }
 }
 //https://stackoverflow.com/questions/44566193/delete-array-from-nested-object-array-in-javascript-on-more-than-one-conditions
-const removeMeeting = ({agenda},indexes) => {
-  return {
-    agenda : agenda.forEach((days,index) =>{
+const removeMeeting = ({agenda},{indexes}) => {
+  console.log("indexes",indexes)
+  const filtered = {
+    agenda : agenda.map((days,index) =>{
       if(indexes.iAgenda === index) {
-        days.meetings = days.meetings.filter((meeting,index) => indexes.iMeeting !== index);
+         days.meetings = days.meetings.filter((meeting,index) => indexes.iMeeting !== index);
+      }
+      else {
+        return days
       }
     })
   }
+  console.log("filtered Array", filtered);
 
+  return filtered.agenda
 }

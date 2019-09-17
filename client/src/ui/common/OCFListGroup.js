@@ -3,7 +3,7 @@ import { ListGroup } from "react-bootstrap";
 
 
 export const OCFListGroup = ({ agenda, deleteMeeting }) => {
-
+  console.log("%c agenda in lit Component","background:cyan", agenda)
   return (
     <div>
       {agenda.map((meetings, index) => {
