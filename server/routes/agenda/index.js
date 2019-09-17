@@ -15,5 +15,15 @@
 // module.exports = api;
 
 // file:app/user/init.js
-const passport = require('passport')
-app.get('/profile', passport.authenticationMiddleware(), renderProfile)
+
+import { Router } from "express";
+import authMiddelwares from "../../middelwares/auth";
+import agendaCtrl from "./controller";
+
+export default () => {
+  const router = new Router();
+  router.get('/agenda', authMiddelwares.isLoggedIn, agendaCtrl.getAgenda);
+  router.post('/agenda', authMiddelwares.isLoggedIn, agendaCtrl.updateAgenda)
+  return router;
+
+}

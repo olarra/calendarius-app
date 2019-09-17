@@ -3,6 +3,7 @@ import uuid from "uuid/v4";
 import expressSession from "express-session";
 import sessionFileStore from "session-file-store";
 import mainRoutes from "./routes/root";
+import agendaRoutes from "./routes/agenda";
 import passport from "passport";
 import { serverConfig, config } from "./config";
 
@@ -48,6 +49,7 @@ export class CalendariusServer {
 
   loadRoutes() {
     this._app.use("/", mainRoutes());
+    this._app.use("/", agendaRoutes());
   }
 
   listen() {
