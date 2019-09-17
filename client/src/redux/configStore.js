@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./rootReducer";
 import ReduxThunk from "redux-thunk"; //async actions
-
+import AgendaService from './agenda/service'
 const selectAgenda = (state) => state.agenda;
 let currentValue
 
@@ -16,6 +16,11 @@ const handleChange = (store) => {
       'to',
       currentValue
     )
+    AgendaService.updateAgenda(currentValue)
+    .then(res =>
+      console.log("%c reponse update agenda","%color:gold",res)
+    )
+    .catch(e => console.log("%c error update agenda","%color:coral",e))
   }
 }
 
