@@ -160,6 +160,11 @@ export class Agenda extends React.Component {
     this.setState({ endHour: value.format("h:mm a") });
   }
 
+  deleteMeeting(agendaIndex,meetingIndex) {
+    console.log("You clicked the => ", agendaIndex,meetingIndex);
+    this.props.removeMeeting(agendaIndex,meetingIndex);
+  }
+
   render() {
     const format = "h:mm a";
 
@@ -278,7 +283,7 @@ export class Agenda extends React.Component {
 
 
 
-              <OCFListGroup agenda={this.props.agenda}></OCFListGroup>
+              <OCFListGroup agenda={this.props.agenda} deleteMeeting={(iAgenda,iMeeting)=> this.deleteMeeting(iAgenda,iMeeting)}></OCFListGroup>
 
             </Col>
           </Row>

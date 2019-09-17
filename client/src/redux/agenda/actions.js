@@ -21,6 +21,13 @@ export const setAgenda = agenda => {
   };
 };
 
+export const removeMeeting = (iAgenda,iMeeting) => {
+  return {
+    type: agendaTypes.REMOVE_MEETING,
+    payload: {indexes : {iAgenda,iMeeting}}
+  };
+};
+
 /* Async Action Creators */
 
 export const fetchAgenda = () => dispatch => {

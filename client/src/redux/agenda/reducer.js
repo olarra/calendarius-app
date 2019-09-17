@@ -13,9 +13,13 @@ export default (state = initialState, { type, payload }) => {
     case agendaTypes.SET_AGENDA:
       return { agenda: [...payload] };
     case agendaTypes.ADD_MEETING:
-    console.log("ADD_MEETING")
       return {
         agenda: addMeeting(state,payload)
+      };
+      case agendaTypes.REMOVE_MEETING:
+      // Remove task from the current state
+      return {
+        agenda: removeMeeting(state,payload)
       };
     default:
       return state;
@@ -56,4 +60,15 @@ const addMeeting = (state, payload) => {
       }]
     }
   }
+}
+//https://stackoverflow.com/questions/44566193/delete-array-from-nested-object-array-in-javascript-on-more-than-one-conditions
+const removeMeeting = ({agenda},indexes) => {
+  return {
+    agenda : agenda.forEach((days,index) =>{
+      if(indexes.iAgenda === index) {
+        days.meetings = days.meetings.filter((meeting,index) => indexes.iMeeting !== index);
+      }
+    })
+  }
+
 }

@@ -1,24 +1,25 @@
 import React, { Component } from "react";
 import { ListGroup } from "react-bootstrap";
 
-const alertClicked = item => {
-  console.log("You clicked the => ", item);
-};
 
-export const OCFListGroup = ({ agenda }) => {
+export const OCFListGroup = ({ agenda, deleteMeeting }) => {
+
   return (
     <div>
       {agenda.map((meetings, index) => {
+        const agendaIndex = index;
         return (
-          <div key={meetings.date}>
-            <h2>{meetings.date}</h2>
+          <div key={meetings.date} style={styles.agendaListContainer}>
+            <h2>{meetings.date} </h2>
             <ListGroup defaultActiveKey="#link1">
-              {meetings.meetings.map((meeting, index) => {
+              {meetings.meetings.map((meeting, index,meetings) => {
+
                 return (
-                  <ListGroup.Item
+
+                  <ListGroup.Item style={styles.listGroup}
                     key={"meeting" + index}
                     action
-                    onClick={() => alertClicked(meeting.label)}
+                    onClick={() =>  deleteMeeting(agendaIndex,index)}
                   >
                     <p>{meeting.label}</p>
                     <p>{meeting.startHour}</p>
@@ -32,3 +33,13 @@ export const OCFListGroup = ({ agenda }) => {
     </div>
   );
 };
+
+
+const styles = {
+  agendaListContainer: {
+    textAlign: "center"
+  },
+  listGroup : {
+    width: "380px"
+  }
+}
