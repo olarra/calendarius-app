@@ -82,20 +82,6 @@ export class Agenda extends React.Component {
   }
 
 
-    renderMyMeetings() {
-      console.log("my meets")
-
-      return this.props.agenda.map(function(item, i){
-        console.log('test',item);
-        return <div key={i}>
-          <p >{item.date}</p>
-          <p >{JSON.stringify(item.meetings)}</p>
-          </div>
-      })
-
-
-    }
-
 
 
   addMeeting() {
@@ -290,7 +276,7 @@ export class Agenda extends React.Component {
               </div>
               <p>My meetings</p>
 
-              {this.renderMyMeetings()}
+
 
               <OCFListGroup agenda={this.props.agenda}></OCFListGroup>
 
