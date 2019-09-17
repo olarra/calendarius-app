@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { ListGroup } from "react-bootstrap";
+import { ListGroup,Button } from "react-bootstrap";
 
 
-export const OCFListGroup = ({ agenda, deleteMeeting }) => {
+export const OCFListGroup = ({ agenda, deleteMeeting, editMeeting }) => {
   console.log("%c agenda in lit Component","background:cyan", agenda)
   return (
     <div>
@@ -18,11 +18,17 @@ export const OCFListGroup = ({ agenda, deleteMeeting }) => {
 
                   <ListGroup.Item style={styles.listGroup}
                     key={"meeting" + index}
-                    action
-                    onClick={() =>  deleteMeeting(agendaIndex,index)}
+                    
+
                   >
                     <p>{meeting.label}</p>
                     <p>{meeting.startHour}</p>
+                      <Button variant="primary" onClick={() => editMeeting(meeting)}>
+                        Edit
+                      </Button>
+                      <Button variant="danger" onClick={() =>  deleteMeeting(agendaIndex,index)}>
+                        Delete
+                      </Button>
                   </ListGroup.Item>
                 );
               })}
@@ -43,3 +49,5 @@ const styles = {
     width: "380px"
   }
 }
+
+// onClick={() =>  deleteMeeting(agendaIndex,index)}

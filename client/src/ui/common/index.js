@@ -3,3 +3,4 @@ export * from "./Emoji";
 export * from "./OCFButton";
 export * from "./OCFTypeDateIndicator";
 export * from "./OCFListGroup";
+export * from "./OCFModal";
