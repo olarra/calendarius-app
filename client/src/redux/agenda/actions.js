@@ -7,6 +7,9 @@ export const addMeeting = meeting => ({type: agendaTypes.ADD_MEETING, payload: m
 
 
 
+export const updateMeeting = meeting => ({type: agendaTypes.UPDATE_MEETING, payload: meeting});
+
+
 // {
 //       "selectedDay": "19/09/2019",
 //       "labelMeeting": "xw",
@@ -32,7 +35,6 @@ export const removeMeeting = (iAgenda,iMeeting) => {
 
 export const fetchAgenda = () => dispatch => {
   agendaService.fetchAgenda().then(data => {
-    console.log("AGENDA =>", data.state.agenda)
     dispatch(setAgenda(data.state.agenda));
   });
 };

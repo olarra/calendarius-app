@@ -96,14 +96,15 @@ export class Agenda extends React.Component {
       endHour : formData.endHour
     };
 
-    console.log("i will add a metting to your Agenda", meeting);
     addMeeting(meeting);
     this.setState({modalShow: !this.state.modalShow})
 
   }
 
   updateMeeting(formData){
-    console.log("updateMeeting",formData,)
+    console.log('FORMDATA', formData)
+    this.props.updateMeeting(formData);
+    this.setState({modalShow: !this.state.modalShow})
   }
 
   handleDayClick(day, { selected, disabled }) {

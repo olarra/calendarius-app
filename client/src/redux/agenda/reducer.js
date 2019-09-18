@@ -21,13 +21,18 @@ export default (state = initialState, { type, payload }) => {
       return {
         agenda: removeMeeting(state,payload)
       };
+      case agendaTypes.UPDATE_MEETING:
+      // Remove task from the current state
+      return {
+        agenda: updateMeeting(state,payload)
+      };
+
     default:
       return state;
   }
 };
 
 const addMeeting = (state, payload) => {
-  console.log("state",state)
   const {date,label,startHour, endHour} = payload;
   let copyagenda = [...state.agenda]
   if(!copyagenda.length) {
@@ -83,3 +88,18 @@ const removeMeeting = ({agenda},{indexes}) => {
 }
 
 const removeNull = (array) => array.filter(item => item != null)
+
+const updateMeeting = ({agenda},meeting) => {
+  console.log("will update",meeting)
+  const {date,label,startHour,endHour} = meeting;
+  return agenda.map((days,index) => {
+   if(meeting.location.iAgenda === index) {
+      days.meetings[meeting.location.iMeeting] = {date,label,startHour,endHour}
+      console.log("%c days =>",'color:lime',days);
+    return days
+   }
+   else {
+     return days
+   }
+ })
+}
