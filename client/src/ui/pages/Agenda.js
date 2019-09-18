@@ -32,7 +32,8 @@ export class Agenda extends React.Component {
       date : undefined,
       locale: "fr",
       modalShow : false,
-      selectedMeetingOnList : {}
+      selectedMeetingOnList : {},
+      formMode : ""
     };
   }
 
@@ -64,9 +65,10 @@ export class Agenda extends React.Component {
       : (<p>Choisissez un jour s'il vous plaît</p>);
   }
 
-  setSelectedMeeting(meeting){
+  setSelectedMeeting(meeting,location){
     // Set selected Meeting and open the modal... The modal will receive the state.selectedMeetingOnList
-    this.setState({selectedMeetingOnList :meeting})
+    console.log("LOCATION",location)
+    this.setState({selectedMeetingOnList :{...meeting,...location}})
     this.setState({modalShow : !this.state.modalShow})
   }
 
@@ -75,11 +77,12 @@ export class Agenda extends React.Component {
     this.setState({selectedMeetingOnList :{}})
     this.setState({date :undefined})
     this.setState({modalShow : !this.state.modalShow})
+    this.setState({formMode : "EDITION"})
   }
 
   renderMeetingsList() {
     if (this.props.agenda.length) {
-      return <OCFListGroup agenda={this.props.agenda} editMeeting={(meeting)=>this.setSelectedMeeting(meeting)} deleteMeeting={(iAgenda, iMeeting) => this.deleteMeeting(iAgenda, iMeeting)}></OCFListGroup>
+      return <OCFListGroup agenda={this.props.agenda} editMeeting={(meeting,location)=>this.setSelectedMeeting(meeting,location)} deleteMeeting={(iAgenda, iMeeting) => this.deleteMeeting(iAgenda, iMeeting)}></OCFListGroup>
     }
   }
 
@@ -100,7 +103,7 @@ export class Agenda extends React.Component {
   }
 
   updateMeeting(formData){
-    console.log("updateMeeting",formData)
+    console.log("updateMeeting",formData,)
   }
 
   handleDayClick(day, { selected, disabled }) {
@@ -117,6 +120,8 @@ export class Agenda extends React.Component {
   }
 
   openModalInCreationMode(){
+
+    this.setState({formMode:"CREATION"})
     this.setState({modalShow:true})
   }
 
@@ -178,6 +183,7 @@ export class Agenda extends React.Component {
 
 
               <OCFModal
+                formMode={this.state.formMode}
                 date={this.state.date}
                 addMeeting={(meeting)=>this.addMeeting(meeting)}
                 updateMeeting={(meeting)=>this.updateMeeting(meeting)}

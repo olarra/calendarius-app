@@ -1,18 +1,27 @@
-import React, {Component} from "react";
-import {Form, Button} from "react-bootstrap";
+import React, { Component } from "react";
+import { Form, Button } from "react-bootstrap";
 import TimePicker from "rc-time-picker";
 import moment from "moment";
 
 export class OCFForm extends Component {
   state = {
-    date: undefined,
+    date: null,
     label: "",
     startHour: null,
     endHour: null,
+    location: null
   }
 
-  componentDidMount(){
-    this.props.date ? this.setState({date:this.props.date}): this.setState({date:this.props.selectedMeetingOnList.date})
+  setInternalStateWithSelectedMeetingInList() {
+    this.setState({ date: this.props.selectedMeetingOnList.date });
+    this.setState({ label: this.props.selectedMeetingOnList.label });
+    this.setState({ startHour: this.props.selectedMeetingOnList.startHour });
+    this.setState({ endHour: this.props.selectedMeetingOnList.endHour });
+    this.setState({ location: { iAgenda: this.props.selectedMeetingOnList.iAgenda, iMeeting: this.props.selectedMeetingOnList.iAgenda } });
+  }
+
+  componentDidMount() {
+    this.props.formMode === "CREATION" ? this.setState({ date: this.props.date }) : this.setInternalStateWithSelectedMeetingInList()
     this.setState({ startHour: moment().hour(0).minute(0).format("h:mm a") });
     this.setState({ endHour: moment().hour(1).minute(30).format("h:mm a") });
   }
@@ -26,9 +35,9 @@ export class OCFForm extends Component {
     this.setState(change);
   }
 
-  renderActionButton(){
-    const { date, addMeeting, updateMeeting} = this.props;
-    if(date) {
+  renderActionButton() {
+    const { date, addMeeting, updateMeeting } = this.props;
+    if (date) {
       return <Button style={{
         alginSelf: "flex-start"
       }} variant="success" onClick={() => addMeeting(this.state)} disabled={!this.isMeetingValid()}>
@@ -46,6 +55,7 @@ export class OCFForm extends Component {
 
   isMeetingValid() {
     const { date, label, startHour, endHour } = this.state;
+    console.log("isMeetingValid", this.state)
 
     const startTime = moment(startHour, "HH:mm a");
     const endTime = moment(endHour, "HH:mm a");
@@ -71,7 +81,7 @@ export class OCFForm extends Component {
       : (<p><strong>{this.props.selectedMeetingOnList.date}</strong></p>);
   }
 
-  render(){
+  render() {
     const { date } = this.props;
     const format = "h:mm a";
     const now = moment().hour(0).minute(0);
@@ -79,45 +89,45 @@ export class OCFForm extends Component {
 
     return (<div className="c-form">
 
-    <Form style={{
-      width: "60%",
-      marginTop: 20
-    }}>
-      <Form.Label className="purpleText">Date Choisie
+      <Form style={{
+        width: "60%",
+        marginTop: 20
+      }}>
+        <Form.Label className="purpleText">Date Choisie
         <span className="required">(*)</span>
-      </Form.Label>
-      <div>
+        </Form.Label>
+        <div>
 
           {this.getSelectedDate()}
 
+        </div>
+        <Form.Group controlId="formGroupLabelMeeting">
+          <Form.Label className="purpleText">
+            Intitulé de la réunion
+          <span className="required">(*)</span>
+          </Form.Label>
+          <Form.Control name="label" value={this.state.label} onChange={e => this.handleChange(e)} type="text" placeholder="Quel est le but de la réunion" />
+        </Form.Group>
+        <Form.Group controlId="formGroupStartHour">
+          <Form.Label className="purpleText">Heure de début
+          <span className="required">(*)</span>
+          </Form.Label>
+          <TimePicker style={{
+            display: "block"
+          }} className="timePicker" defaultValue={now} showSecond={false} onChange={e => this.onChangeStartTime(e)} format={format} use12Hours={true} inputReadOnly={true} />
+        </Form.Group>
+        <Form.Group controlId="formGroupEndHour">
+          <Form.Label className="purpleText">Heure de fin
+          <span className="required">(*)</span>
+          </Form.Label>
+          <TimePicker style={{
+            display: "block"
+          }} className="timePicker" defaultValue={future} showSecond={false} onChange={e => this.onChangeEndTime(e)} format={format} use12Hours={true} inputReadOnly={true} />
+        </Form.Group>
+      </Form>
+      <div style={{ position: "absolute", bottom: "-55px", right: "100px" }}>
+        {this.renderActionButton()}
       </div>
-      <Form.Group controlId="formGroupLabelMeeting">
-        <Form.Label className="purpleText">
-          Intitulé de la réunion
-          <span className="required">(*)</span>
-        </Form.Label>
-        <Form.Control name="label" value={this.state.label} onChange={e => this.handleChange(e)} type="text" placeholder="Quel est le but de la réunion" />
-      </Form.Group>
-      <Form.Group controlId="formGroupStartHour">
-        <Form.Label className="purpleText">Heure de début
-          <span className="required">(*)</span>
-        </Form.Label>
-        <TimePicker style={{
-          display: "block"
-        }} className="timePicker" defaultValue={now} showSecond={false} onChange={e => this.onChangeStartTime(e)} format={format} use12Hours={true} inputReadOnly={true} />
-      </Form.Group>
-      <Form.Group controlId="formGroupEndHour">
-        <Form.Label className="purpleText">Heure de fin
-          <span className="required">(*)</span>
-        </Form.Label>
-        <TimePicker style={{
-          display: "block"
-        }} className="timePicker" defaultValue={future} showSecond={false} onChange={e => this.onChangeEndTime(e)} format={format} use12Hours={true} inputReadOnly={true} />
-      </Form.Group>
-    </Form>
-    <div style={{ position: "absolute", bottom: "-55px", right: "100px" }}>
-      {this.renderActionButton()}
-    </div>
 
 
     </div>)

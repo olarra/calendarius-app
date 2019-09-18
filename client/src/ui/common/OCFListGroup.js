@@ -23,7 +23,7 @@ export const OCFListGroup = ({ agenda, deleteMeeting, editMeeting }) => {
                   >
                     <p>{meeting.label}</p>
                     <p>{meeting.startHour}</p>
-                      <Button variant="primary" onClick={() => editMeeting({...meeting, date: days.date})}>
+                      <Button variant="primary" onClick={() => editMeeting({...meeting, date: days.date},{iAgenda:agendaIndex,iMeeting:index})}>
                         Edit
                       </Button>
                       <Button variant="danger" onClick={() =>  deleteMeeting(agendaIndex,index)}>

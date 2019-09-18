@@ -5,7 +5,7 @@ import { OCFForm } from "./OCFForm";
 export class OCFModal extends Component {
 
   render() {
-    const {date, resetFormData, addMeeting, show, selectedMeetingOnList, onHide, updateMeeting} = this.props;
+    const {date, resetFormData, addMeeting, show, selectedMeetingOnList, onHide, updateMeeting , formMode} = this.props;
     return <Modal show={show} onHide={onHide} size="lg" aria-labelledby="contained-modal-title-vcenter" centered="centered" backdrop="static">
       <Modal.Header closeButton={false}>
         <Modal.Title id="contained-modal-title-vcenter">
@@ -13,7 +13,7 @@ export class OCFModal extends Component {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <OCFForm date={date} addMeeting={(meeting)=>addMeeting(meeting)} updateMeeting={(meeting)=>updateMeeting(meeting)}selectedMeetingOnList={selectedMeetingOnList}></OCFForm>
+        <OCFForm formMode={formMode} date={date} addMeeting={(meeting)=>addMeeting(meeting)} updateMeeting={(meeting)=>updateMeeting(meeting)}selectedMeetingOnList={selectedMeetingOnList}></OCFForm>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={()=>resetFormData()}>Close</Button>
