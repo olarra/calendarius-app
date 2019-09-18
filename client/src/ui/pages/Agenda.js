@@ -69,6 +69,7 @@ export class Agenda extends React.Component {
     // Set selected Meeting and open the modal... The modal will receive the state.selectedMeetingOnList
     console.log("LOCATION",location)
     this.setState({selectedMeetingOnList :{...meeting,...location}})
+    this.setState({formMode:"EDITION"})
     this.setState({modalShow : !this.state.modalShow})
   }
 
@@ -77,7 +78,6 @@ export class Agenda extends React.Component {
     this.setState({selectedMeetingOnList :{}})
     this.setState({date :undefined})
     this.setState({modalShow : !this.state.modalShow})
-    this.setState({formMode : "EDITION"})
   }
 
   renderMeetingsList() {
