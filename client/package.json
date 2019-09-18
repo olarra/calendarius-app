@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "engines": {
-    "node": "^12"
+    "node": "^8 || ^12"
   },
   "private": true,
   "proxy": "http://localhost:8081",
