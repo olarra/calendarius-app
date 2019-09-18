@@ -65,13 +65,7 @@ export class Agenda extends React.Component {
       : (<p>Choisissez un jour s'il vous plaît</p>);
   }
 
-  setSelectedMeeting(meeting,location){
-    // Set selected Meeting and open the modal... The modal will receive the state.selectedMeetingOnList
-    console.log("LOCATION",location)
-    this.setState({selectedMeetingOnList :{...meeting,...location}})
-    this.setState({formMode:"EDITION"})
-    this.setState({modalShow : !this.state.modalShow})
-  }
+
 
   resetFormData(){
     // Set selected Meeting and open the modal... The modal will receive the state.selectedMeetingOnList
@@ -88,6 +82,7 @@ export class Agenda extends React.Component {
 
   addMeeting(formData) {
     // add metting from container redux actions
+    console.log("add meeting")
     const { addMeeting } = this.props;
     let meeting = {
       date: formData.date.toLocaleDateString(),
@@ -124,6 +119,14 @@ export class Agenda extends React.Component {
 
     this.setState({formMode:"CREATION"})
     this.setState({modalShow:true})
+  }
+
+  setSelectedMeeting(meeting,location){
+    // Set selected Meeting and open the modal... The modal will receive the state.selectedMeetingOnList
+    console.log("EDITION MODE",location)
+    this.setState({selectedMeetingOnList :{...meeting,...location}})
+    this.setState({formMode:"EDITION"})
+    this.setState({modalShow : !this.state.modalShow})
   }
 
   renderAddButton() {

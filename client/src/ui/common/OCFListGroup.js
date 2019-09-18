@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ListGroup,Button } from "react-bootstrap";
-
+import { sortBy } from 'underscore'
 
 export const OCFListGroup = ({ agenda, deleteMeeting, editMeeting }) => {
   return (
@@ -11,14 +11,10 @@ export const OCFListGroup = ({ agenda, deleteMeeting, editMeeting }) => {
           <div key={days.date} style={styles.agendaListContainer}>
             <h2>{days.date} </h2>
             <ListGroup defaultActiveKey="#link1">
-              {days.meetings.map((meeting, index) => {
-
+              {sortBy(days.meetings,'label').map((meeting, index) => {
                 return (
-
                   <ListGroup.Item style={styles.listGroup}
                     key={"meeting" + index}
-
-
                   >
                     <p>{meeting.label}</p>
                     <p>{meeting.startHour}</p>

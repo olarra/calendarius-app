@@ -54,7 +54,7 @@ export class OCFForm extends Component {
 
   renderActionButton() {
     const { date, addMeeting, updateMeeting } = this.props;
-    if (date) {
+    if (this.props.formMode === "CREATION") {
       return <Button style={{
         alginSelf: "flex-start"
       }} variant="success" onClick={() => addMeeting(this.momentObjToReadableTime(this.state))} disabled={!this.isMeetingValid()}>
