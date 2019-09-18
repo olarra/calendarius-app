@@ -1,0 +1,26 @@
+version: "3"
+services:
+    frontend:
+        container_name: calendarious_client
+        build:
+            context: ./client
+            dockerfile: Dockerfile
+        image: jesus/calendarious_client
+        volumes:
+            - ./frontend:/app/frontend
+        ports:
+            - "3000:3000"
+        links:
+          - backend
+        command: npm run start
+    backend:
+        container_name: calendarious_server
+        build:
+            context: ./server
+            dockerfile: Dockerfile
+        image: jesus/calendarious_server
+        volumes:
+            - ./backend:/app/backend
+        ports:
+            - "8081:8081"
+        command: npm run dev:server

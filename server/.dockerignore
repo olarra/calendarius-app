@@ -1,5 +1,3 @@
 Dockerfile
 .dockerignore
-.completions.json
-.importjs.json
 node_modules
