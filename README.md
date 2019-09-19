@@ -1,45 +1,83 @@
-# Create React App [![Build Status](https://dev.azure.com/facebook/create-react-app/_apis/build/status/facebook.create-react-app?branchName=master)](https://dev.azure.com/facebook/create-react-app/_build/latest?definitionId=1&branchName=master) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/facebook/create-react-app/pulls)
+# Calendarious@App
 
-Create React apps with no build configuration.
+![](https://img.shields.io/badge/ReactNative-16.8.3-blue) ![](https://img.shields.io/badge/NodeJS-12.10.0-blue) ![](https://img.shields.io/badge/Docker-18.03.1-9cf) ![](https://img.shields.io/badge/reactNavigation-green) ![](https://img.shields.io/badge/Redux-blueviolet) ![](https://img.shields.io/badge/ReactBootstrap-important) ![](https://img.shields.io/badge/REST API With Security-success) ![](https://img.shields.io/badge/Persisting State-ff69b4) ![](https://img.shields.io/badge/Persisting Session-ff69b4) ![](https://img.shields.io/badge/PassportJS-blueViolet) ![](https://img.shields.io/badge/Cookie Authentication Strategy-yellowgreen) ![](https://img.shields.io/badge/Illustrator-Logo vectorize-yellow)
 
-- [Creating an App](#creating-an-app) – How to create a new app.
-- [User Guide](https://facebook.github.io/create-react-app/) – How to develop apps bootstrapped with Create React App.
+Web Application to manage meetings. The web interface allows you to **C**reat, **R**ead, **U**pdate and **D**elete appoiments from your Agenda. Otherwise you must first authenticate to access this page.
 
-Create React App works on macOS, Windows, and Linux.<br>
-If something doesn’t work, please [file an issue](https://github.com/facebook/create-react-app/issues/new).<br>
-If you have questions or need help, please ask in our [Spectrum](https://spectrum.chat/create-react-app) community.
+This Application use a session cookie to persist connection  between client and server even after the user has closed the **window** into an web explorer. This way the meetings created on your Agenda will persist in the browser until the window is closed or server is stop.
 
 ## Demo
 
 <img src="client/public/assets/demo.gif" alt="test-tech" width="900"/>
 
-## Quick Overview
+## Development
 
-```sh
-npx create-react-app my-app
-cd my-app
-npm start
-```
+The developpment tasks can be splitted into Functional and Thecnical Assigments.
 
-_([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher, see [instructions for older npm versions](https://gist.github.com/gaearon/4064d3c23a77c74a3614c498a8bb1c5f))_
+**Funtional Assigments:**
 
-Then open [http://localhost:3000/](http://localhost:3000/) to see your app.<br>
-When you’re ready to deploy to production, create a minified bundle with `npm run build`.
+:small_blue_diamond: Navigation throught the App, Redirection to Login if not Authenticated, Redirection to Managment Page if Authenticated.
 
-<p align='center'>
-<img src='https://cdn.rawgit.com/facebook/create-react-app/27b42ac/screencast.svg' width='600' alt='npm start'>
-</p>
+:small_blue_diamond: Creation, Reading, Updating, Deleting, of Meeting.
 
-Test Case
+:small_blue_diamond:  Application Login and Logout and Error Displaying in case of Failed Login.
 
-<pre><code language="undefined">npm test
-npm run chrome-test</code></pre>
+:small_blue_diamond: Goog User Interface Design an User Experience
 
-Coverage
+**Thecnical Assigments:**
 
-npm run coverage
+:small_orange_diamond: Clean code
 
-open coverage/ dir
+:small_orange_diamond: Code documentation
+
+:small_orange_diamond: CSS Style
+
+:small_orange_diamond: Splitting an application into separate layers (ui, state, service and application).
+
+:small_orange_diamond: **Session and State persistence**  (No Database implementation Request)
+
+:small_orange_diamond: **REST API** with Security in Routes
+
+:small_orange_diamond: *WEB App dockerization*
+
+## Running Application 🖥️ (The asiest way 😊)
+
+Once you've cloned the project to your machine you can launch the project. Easy! 👏🏻
+
+1. Navigate to the directory in which you cloned the project.
 
 
-A session cookie is just a normal cookie without an expiration date. Those are handled by the browser to be valid until the window is closed or program is quit.
+
+   ```
+   cd calendarious-app
+   ```
+
+2. Run the following commands from this directory
+
+
+
+   ```
+   docker-compose up
+   ```
+
+The docker-compose command will build images and run Docker containers. It will  link the client and the server based on the information inside the docker-compose.yml file. This will also create ports, and configure applications as requrired. **After a few minutes** the command completes and the application will be available.
+
+3. Acces Aplication
+
+   [http://localhost:3000](http://localhost:3000/) (Calendarious Client)
+
+   [http://localhost:8081](http://localhost:8081/) (Calendarious Server)
+
+4. Stop Application
+
+
+
+   ```
+   docker-compose stop
+   ```
+
+
+
+## Doubts? Ideas? Corrections?
+
+Send an Issue, a pull request or knock me in my **<u>Live Chat</u>** at  https://jesus-garnica-olarra.herokuapp.com/ 
