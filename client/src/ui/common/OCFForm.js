@@ -102,7 +102,7 @@ export class OCFForm extends Component {
     const { date } = this.props;
     const format = "h:mm a";
 
-    return (<div className="c-form">
+    return (<div className="c-form" style={{justifyContent: "center", display: "flex"}}>
 
       <Form style={{
         width: "60%",

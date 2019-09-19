@@ -7,7 +7,7 @@ export class OCFModal extends Component {
   render() {
     const {date, resetFormData, addMeeting, show, selectedMeetingOnList, onHide, updateMeeting , formMode} = this.props;
     return <Modal show={show} onHide={onHide} size="lg" aria-labelledby="contained-modal-title-vcenter" centered="centered" backdrop="static">
-      <Modal.Header closeButton={false}>
+      <Modal.Header closeButton={false} style={{justifyContent: "center"}}>
         <Modal.Title id="contained-modal-title-vcenter">
           Modal heading
         </Modal.Title>
