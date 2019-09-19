@@ -11,7 +11,7 @@ If you have questions or need help, please ask in our [Spectrum](https://spectru
 
 ## Demo
 
-<img src="assets/demo.gif" alt="test-tech" width="900"/>
+<img src="client/public/assets/demo.gif" alt="test-tech" width="900"/>
 
 ## Quick Overview
 
