@@ -201,7 +201,7 @@ export class Agenda extends React.Component {
             </div>
 
           </Col>
-          <Col className="c-agenda-col-right">
+          <Col className="c-agenda-col-right" style={{justifyContent:  (!this.props.agenda.length) ? "center" : "flex-start"}}>
 
 
 
@@ -217,7 +217,7 @@ export class Agenda extends React.Component {
                 onHide={() => this.setState({modalShow:false})}
               />
 
-            <p>My meetings</p>
+            {!this.props.agenda.length &&<h5>Vous n'avez pas encore de rdvz sur votre calendrier</h5>}
 
             {this.renderMeetingsList()}
 

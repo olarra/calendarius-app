@@ -4,12 +4,14 @@ import { sortBy } from 'underscore'
 
 export const OCFListGroup = ({ agenda, deleteMeeting, editMeeting }) => {
   return (
-    <div>
+    <div style={{marginTop:80}}>
       {agenda.map((days, index) => {
         const agendaIndex = index;
         return (
           <div key={days.date} style={styles.agendaListContainer}>
-            <h2>{days.date} </h2>
+          <div style={styles.headerContainer}>
+            <span style={{color : "#ffffff", paddingLeft: 20}}>Date : {days.date}</span>
+          </div>
             <ListGroup defaultActiveKey="#link1">
               {sortBy(days.meetings,'label').map((meeting, index) => {
                 return (
@@ -40,8 +42,15 @@ const styles = {
   agendaListContainer: {
     textAlign: "center"
   },
+  headerContainer: {
+    background: "linear-gradient(to bottom, #673ab7, #512da8)",
+    width: "100%",
+    height: 40,
+    display: "flex",
+    alignItems: "center"
+  },
   listGroup : {
-    width: "380px"
+    width: "500px"
   }
 }
 
