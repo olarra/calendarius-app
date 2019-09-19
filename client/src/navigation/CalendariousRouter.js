@@ -13,11 +13,9 @@ export const CalendariousRouter = () => {
           <Switch>
 
              <Route exact path="/" component={AuthContainer} />
-
-
-
-            <Route path="/home" component={Public} />
-
+             {
+               //<Route path="/home" component={Public} />
+             }
             <PrivateRoute >
               <Route path="/agenda" component={AgendaContainer} />
             </PrivateRoute>
