@@ -9,6 +9,10 @@ Create React App works on macOS, Windows, and Linux.<br>
 If something doesn’t work, please [file an issue](https://github.com/facebook/create-react-app/issues/new).<br>
 If you have questions or need help, please ask in our [Spectrum](https://spectrum.chat/create-react-app) community.
 
+## Demo
+
+<img src="assets/demo.gif" alt="test-tech" width="900"/>
+
 ## Quick Overview
 
 ```sh
