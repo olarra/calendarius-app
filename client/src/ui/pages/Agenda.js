@@ -197,7 +197,7 @@ export class Agenda extends React.Component {
             }} selectedDays={this.state.date} onDayClick={this.handleDayClick} />
             <div className="c-date-type">
               <OCFTypeDateIndicator label="Aaujourd'hui" color="#ffc107"></OCFTypeDateIndicator>
-              <OCFTypeDateIndicator label="Meeting" color="#9980FA"></OCFTypeDateIndicator>
+              <OCFTypeDateIndicator label="Jour Choisi" color="#B53471"></OCFTypeDateIndicator>
             </div>
 
           </Col>

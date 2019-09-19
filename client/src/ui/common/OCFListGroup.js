@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ListGroup,Button } from "react-bootstrap";
+import { ListGroup,Button,Col } from "react-bootstrap";
 import { sortBy } from 'underscore'
 
 export const OCFListGroup = ({ agenda, deleteMeeting, editMeeting }) => {
@@ -18,14 +18,20 @@ export const OCFListGroup = ({ agenda, deleteMeeting, editMeeting }) => {
                   <ListGroup.Item style={styles.listGroup}
                     key={"meeting" + index}
                   >
-                    <p>{meeting.label}</p>
-                    <p>{meeting.startHour}</p>
-                      <Button variant="primary" onClick={() => editMeeting({...meeting, date: days.date},{iAgenda:agendaIndex,iMeeting:index})}>
-                        Edit
-                      </Button>
-                      <Button variant="danger" onClick={() =>  deleteMeeting(agendaIndex,index)}>
-                        Delete
-                      </Button>
+                  <Col sm={7} className="text-left" style={{fontSize: 14, display:"flex",flexDirection:"column", alignItems:"flex-start"}}>
+                  <span>Intitulé : {meeting.label}</span>
+                  <span>Horaire : De {meeting.startHour} à {meeting.endHour} </span>
+                  </Col>
+  <Col  style={{display:"flex",  justifyContent: "space-between"}}>
+  <Button style={styles.btn} variant="primary" onClick={() => editMeeting({...meeting, date: days.date},{iAgenda:agendaIndex,iMeeting:index})}>
+    Edit
+  </Button>
+  <Button style={styles.btn} variant="danger" onClick={() =>  deleteMeeting(agendaIndex,index)}>
+    Delete
+  </Button>
+  </Col>
+
+
                   </ListGroup.Item>
                 );
               })}
@@ -49,8 +55,12 @@ const styles = {
     display: "flex",
     alignItems: "center"
   },
+  btn : {
+    height: 35
+  },
   listGroup : {
-    width: "500px"
+    width: "500px",
+    display: "flex"
   }
 }
 

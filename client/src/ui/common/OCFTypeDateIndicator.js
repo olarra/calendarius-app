@@ -6,7 +6,7 @@ export const OCFTypeDateIndicator = ({ color, label }) =>  {
     <div style={{ display: "flex" }}>
       <div style={{ ...bg, height: 23, width: 23 }}></div>
       <div style={{ height: 23, width: 23, marginLeft: "9px" }}>
-        <span>{label}</span>
+        <span style={{display:"block", width:100}}>{label}</span>
       </div>
     </div>
   )

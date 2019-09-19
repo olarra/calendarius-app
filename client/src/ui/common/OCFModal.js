@@ -9,7 +9,7 @@ export class OCFModal extends Component {
     return <Modal show={show} onHide={onHide} size="lg" aria-labelledby="contained-modal-title-vcenter" centered="centered" backdrop="static">
       <Modal.Header closeButton={false} style={{justifyContent: "center"}}>
         <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
+          {formMode === 'CREATION' ? "Creation d'un rendez vous" :  "Mis à jour du rendez-vous" }
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

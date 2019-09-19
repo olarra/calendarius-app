@@ -18,6 +18,10 @@
   flex-direction: column;
 }
 
+.DayPicker-Day--selected {
+  background: #B53471 !important;
+}
+
 .DayPicker-Day {
   padding: 0.5em 16px;
 }
