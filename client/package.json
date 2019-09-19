@@ -5,7 +5,7 @@
     "node": "^8 || ^9 || ^10 || ^11 || ^12"
   },
   "private": true,
-  "proxy": "server:8081",
+  "proxy": "http://localhost:8081",
 
   "dependencies": {
     "axios": "^0.19.0",

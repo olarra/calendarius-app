@@ -43,7 +43,13 @@
   color: #ff6b81
 }
 
-.c-date-picker {}
+.c-add-btn {
+  display: flex;
+width: 80%;
+text-align: center;
+justify-content: flex-end;
+
+}
 
 .cursor {
   width: 13px;

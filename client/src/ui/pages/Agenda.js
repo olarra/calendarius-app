@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import AuthService from "../../redux/auth/service";
 import AgendaService from "../../redux/agenda/service";
 
@@ -14,6 +14,9 @@ import "moment/locale/fr";
 import {
   Container,
   ButtonToolbar,
+  Overlay,
+  OverlayTrigger,
+  Tooltip,
   Row,
   Col,
   Image,
@@ -28,12 +31,14 @@ export class Agenda extends React.Component {
   constructor(props) {
     super(props);
     this.handleDayClick = this.handleDayClick.bind(this);
+    this.btnRef = React.createRef();
     this.state = {
       date : undefined,
       locale: "fr",
       modalShow : false,
       selectedMeetingOnList : {},
-      formMode : ""
+      formMode : "",
+      showToolTip : false,
     };
   }
 
@@ -130,11 +135,26 @@ export class Agenda extends React.Component {
   }
 
   renderAddButton() {
-    return (<OCFButton className={this.state.date
-      ? "addButton"
-      : 'addButton-disabled'} disabled={!this.state.date} onClick={() => this.openModalInCreationMode()}>
-      +
-    </OCFButton>);
+    return (
+
+
+    <OverlayTrigger
+          placement="left"
+          overlay={
+            <Tooltip>
+            <strong>Select a date on calendar</strong>.
+            </Tooltip>
+          }
+        >
+        <OCFButton ref={this.btnRef}  className={this.state.date
+        ? "addButton"
+        : 'addButton-disabled'} disabled={!this.state.date} onClick={() => {this.setState({showToolTip:true}); this.openModalInCreationMode()}}>
+        +
+      </OCFButton>
+        </OverlayTrigger>
+
+
+  );
   }
 
 
@@ -171,7 +191,7 @@ export class Agenda extends React.Component {
       <Container fluid={true}>
         <Row>
           <Col xs={6} className="c-agenda-col-left">
-            <div className="c-date-picker">{this.renderAddButton()}</div>
+            <div className="c-add-btn">{this.renderAddButton()}</div>
             <DayPicker localeUtils={MomentLocaleUtils} locale={this.state.locale} modifiers={modifiers} modifiersStyles={modifiersStyles} disabledDays={{
               daysOfWeek: [0, 6]
             }} selectedDays={this.state.date} onDayClick={this.handleDayClick} />
