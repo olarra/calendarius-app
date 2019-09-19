@@ -1,6 +1,6 @@
 # Calendarious@App
 
-![](https://img.shields.io/badge/ReactNative-16.8.3-blue) ![](https://img.shields.io/badge/NodeJS-12.10.0-blue) ![](https://img.shields.io/badge/Docker-18.03.1-9cf) ![](https://img.shields.io/badge/reactNavigation-green) ![](https://img.shields.io/badge/Redux-blueviolet) ![](https://img.shields.io/badge/ReactBootstrap-important) ![](https://img.shields.io/badge/REST API With Security-success) ![](https://img.shields.io/badge/Persisting State-ff69b4) ![](https://img.shields.io/badge/Persisting Session-ff69b4) ![](https://img.shields.io/badge/PassportJS-blueViolet) ![](https://img.shields.io/badge/Cookie Authentication Strategy-yellowgreen) ![](https://img.shields.io/badge/Illustrator-Logo vectorize-yellow)
+![](https://img.shields.io/badge/ReactNative-16.8.3-blue) ![](https://img.shields.io/badge/NodeJS-12.10.0-blue) ![](https://img.shields.io/badge/Docker-18.03.1-9cf) ![](https://img.shields.io/badge/reactNavigation-green) ![](https://img.shields.io/badge/Redux-blueviolet) ![](https://img.shields.io/badge/ReactBootstrap-important) ![](https://img.shields.io/badge/REST.API.With.Security-success) ![](https://img.shields.io/badge/Persisting.State-ff69b4) ![](https://img.shields.io/badge/Persisting.Session-ff69b4) ![](https://img.shields.io/badge/PassportJS-blueViolet) ![](https://img.shields.io/badge/Cookie.Authentication.Strategy-yellowgreen) ![](https://img.shields.io/badge/Illustrator-Logo.vectorize-yellow) 
 
 Web Application to manage meetings. The web interface allows you to **C**reat, **R**ead, **U**pdate and **D**elete appoiments from your Agenda. Otherwise you must first authenticate to access this page.
 
@@ -80,4 +80,4 @@ The docker-compose command will build images and run Docker containers. It will 
 
 ## Doubts? Ideas? Corrections?
 
-Send an Issue, a pull request or knock me in my **<u>Live Chat</u>** at  https://jesus-garnica-olarra.herokuapp.com/ 
+Send an Issue, a pull request or knock me in my **<u>Live Chat</u>** at  https://jesus-garnica-olarra.herokuapp.com/
