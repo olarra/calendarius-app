@@ -2,9 +2,9 @@
 
 ![](https://img.shields.io/badge/ReactNative-16.8.3-blue) ![](https://img.shields.io/badge/NodeJS-12.10.0-blue) ![](https://img.shields.io/badge/Docker-18.03.1-9cf) ![](https://img.shields.io/badge/reactNavigation-green) ![](https://img.shields.io/badge/Redux-blueviolet) ![](https://img.shields.io/badge/ReactBootstrap-important) ![](https://img.shields.io/badge/REST.API.With.Security-success) ![](https://img.shields.io/badge/Persisting.State-ff69b4) ![](https://img.shields.io/badge/Persisting.Session-ff69b4) ![](https://img.shields.io/badge/PassportJS-blueViolet) ![](https://img.shields.io/badge/Cookie.Authentication.Strategy-yellowgreen) ![](https://img.shields.io/badge/Illustrator-Logo.vectorize-yellow) 
 
-Web Application to manage meetings. The web interface allows you to **C**reat, **R**ead, **U**pdate and **D**elete appoiments from your Agenda. Otherwise you must first authenticate to access this page.
+Web Application to manage meetings. The web interface allows you to **C**reat, **R**ead, **U**pdate and **D**elete appoiments from your Agenda. However you must first authenticate to access this page.
 
-This Application use a session cookie to persist connection  between client and server even after the user has closed the **window** into an web explorer. This way the meetings created on your Agenda will persist in the browser until the window is closed or server is stop.
+This Application use a session cookie to persist connection between client and server even after the user has closed the **window** into the web explorer. This way the meetings created on your Agenda will persist in the browser until the window is closed or server is stopped.
 
 ## Demo
 
